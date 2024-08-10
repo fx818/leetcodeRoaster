@@ -11,7 +11,7 @@ def home(request):
         query = request.POST['query'] #get the username
         stats = leetcode(query)
         # username = request.POST['username']
-        username = 'anonymous'
+        username = query
         output = results(stats)
         tosend = output
         output = output.split('\n')
@@ -37,7 +37,6 @@ def home(request):
             if data != []:
                 newResponse.append(' '.join(data))
             print("Printing data: ", data)
-        print(newResponse)
         data_output[0][1] = newResponse
         return render(request, 'assistant/home.html', {'all_data': data_output[0],'response':tosend, 'username':query})
     return render(request, 'assistant/home.html')
