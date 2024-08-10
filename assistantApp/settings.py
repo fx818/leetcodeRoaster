@@ -30,7 +30,7 @@ DEBUG = True
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "leetcoderoaster-production.up.railway.app", '*']
 
 
-CSRF_TRUSTED_ORIGINS = ['https://leetcoderoaster-production.up.railway.app/']
+CSRF_TRUSTED_ORIGINS = ['https://leetcoderoaster-production.up.railway.app']
 
 # Application definition
 
