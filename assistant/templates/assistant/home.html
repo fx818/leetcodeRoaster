@@ -8,31 +8,10 @@
     <title>LeetCode Roaster</title>
 
     <link rel="stylesheet" href="{% static 'index.css' %}">
-    <script>
-        import { inject } from '@vercel/analytics';
-        inject();
- 
-        // window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-    </script>
-    <!-- <script defer src="/_vercel/insights/script.js"></script> -->
 
 
     <style>
-        .form-data {
-            /* position: fixed; */
-            /* bottom: 1rem; */
-            display: grid;
-            grid-template-columns: 9fr 1fr;
-            align-items: center;
-            place-content: center;
-            place-items: center;
-
-        }
-
-        .form-data input {
-            height: fit-content;
-        }
-
+        
         * {
             color: #fea116;
             background-color: rgb(38, 38, 38);
@@ -42,7 +21,6 @@
             border: 3px solid #ffffff00;
             box-shadow: 10px 5px 10px #fea11600;
             margin: .5rem;
-            /* margin-right: 2rem; */
             border-radius: 1.5rem;
             padding: 1rem;
             height: auto;
@@ -53,21 +31,16 @@
             color: inherit;
         }
 
-        textarea {
+        input {
             width: 95%;
             border: 0;
             margin-bottom: 1rem;
             margin-right: 2rem;
-            font-family: cursive;
             font-size: 1rem;
             font-weight: bold;
             padding: .5rem 1rem 0rem 1rem;
-            outline: none;
-            resize: none;
-            height: auto;
-            overflow-y: hidden;
+ 
             background-color: transparent;
-            padding-left: 1rem;
         }
 
         .askbutton {
@@ -75,10 +48,8 @@
             border-radius: .5rem;
             padding: .5rem 1.5rem;
             color: #fea116;
-            /* background-color: rgb(22,33,62); */
             font-size: 1rem;
             font-weight: bold;
-            margin-left: .5rem;
         }
 
         .query-container {
@@ -90,7 +61,7 @@
             box-shadow: 5px 3px 5px #fea116;
             height: 50vh;
             overflow-y: scroll;
-            width: 50%;
+            width: 75%;
 
         }
 
@@ -110,16 +81,22 @@
         }
 
         .form-data {
-            width: 50%;
+            width: 75%;
             border: 1px solid #fea116;
             border-radius: 0.5rem;
             box-shadow: 1px 1px 5px #fea116;
             padding-right: 1rem;
-            padding-top: .25rem;
-            padding-bottom: .25rem;
-            padding-left: 2rem;
-            /* background-color: white; */
+            padding-top: .75rem;
+            padding-bottom: .75rem;
+            padding-left: 1rem;
+
         }
+        .inputtext{
+
+            border: 1px solid black;
+            width: 90%;
+        }
+
     </style>
 
 </head>
@@ -128,7 +105,6 @@
 
 
     <h1>Leetcode Roaster!</h1>
-    <!-- <h1>Leetcode Roaster!</h1> -->
 
 
 
@@ -136,17 +112,17 @@
 
         <div class="query-container">
             {% if username %}
-            <h2>
+            <h3>
                 <u>
-                    Here is your roast {{ username }}
+                    Your roast {{ username }}
                 </u>
-            </h2>
+            </h3>
             {% else %}
-            <h2>
-                <u>
+            <h3>
+                <!-- <u> -->
                     Enter username to get roasted
-                </u>
-            </h2>
+                <!-- </u> -->
+            </h3>
             {% endif %}
             <p>
                 {{response}}
@@ -157,27 +133,13 @@
         <form class="form-data" action="home" method="POST">
             {% csrf_token %}
 
-            <textarea id="autoResizeTextarea" name="query" rows="1">LeetCode Username</textarea>
-            <input type="submit" value="Get Roasted🚀" class="askbutton">
+            <input class="inputtext form-data" type="text" name="query" placeholder="LeetCode Username"/> <br>
+            <input type="submit" value="Go 🚀" class="askbutton submitbtn">
         </form>
 
 
     </center>
 
-
-
-
-    <script>
-        function autoResizeTextarea(textarea) {
-            textarea.style.height = 'auto'; // Reset the height
-            textarea.style.height = textarea.scrollHeight + 'px'; // Set it to the scroll height
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const textarea = document.getElementById('autoResizeTextarea');
-            textarea.addEventListener('input', () => autoResizeTextarea(textarea));
-        });
-    </script>
 
 
 

@@ -8,16 +8,16 @@ os.environ["OPENAI_API_KEY"] ='gsk_kM9VqST769PP5EdRL5shWGdyb3FYVPmW6e2jiPzIIUv30
 
 responder = Agent(
     role = "Programmer roaster",
-    goal = "you have to roast the user in the worst possible way using the leetcode stats provided to you",
-    backstory = "You are an roaster made by Anurag Upadhyay whose only job is to roast the coders and programmers in the worst possible way using the leetcode statistics provided to you. Roast in a very brutal way that affects the mental health of the user. Donot praise the user even if his stats are good just roast him.",
+    goal = "you have to roast the user in the worst possible way using the leetcode stats provided to you. Donot include the total no of questions he has solved. You can also use the username of the user to roast him if that would be good choice.",
+    backstory = "You are an roaster made by Anurag Upadhyay whose only job is to roast the coders and programmers in the worst possible way using the leetcode statistics provided to you. Donot include the total no of questions he has solved. Roast in a very brutal way that affects the mental health of the user. Donot praise the user even if his stats are good just roast him.",
     # verbose = True,
     allow_delegation = False,
 )
 def analyse_query_user(query):
     analyse_query = Task(
-        description = f"Analyse the stats {query} given by the user and provide the output for the same.",
+        description = f"Analyse the stats {query} given by the user and provide the output for the same. Donot include the total no of questions he has solved. You can also use the username of the user to roast him if that would be good choice.",
         agent = responder,
-        expected_output = "Roast the user in the worst possible way so that it affects his/her at a very emotional and mental level. You are required to provide the roast in maximum of 250 words. Donot praise the user even if his stats are good just roast him. Roast in a very brutal way that affects the mental health of the user."
+        expected_output = "Roast the user in the worst possible way so that it affects his/her at a very emotional and mental level. You are required to provide the roast in maximum of 250 words. Do not praise the user even if his stats are good just roast him. Roast in a very brutal way that affects the mental health of the user. Do not include the total no of questions he has solved. You can also use the username of the user to roast him if that would be good choice."
     )
     return analyse_query
 
@@ -92,6 +92,7 @@ def leetcode(user_id):
         response = requests.post(url, headers=headers, json=body)
         response.raise_for_status()
         data = response.json()
+        data["username"] = user_id
 
         
         if 'errors' in data:
