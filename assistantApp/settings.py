@@ -30,7 +30,7 @@ DEBUG = True
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "leetcoderoaster-production.up.railway.app", '*']
 
 
-CSRF_TRUSTED_ORIGINS = ['https://leetcoderoaster-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://leetcoderoaster-production.up.railway.app/']
 
 # Application definition
 
@@ -88,20 +88,12 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Default to 'development' if ENVIRONMENT is not set
-ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
-POSTGRES_LOCALLY = os.getenv('POSTGRES_LOCALLY', 'False') == 'True'
-
-# Initialize DATABASES dictionary
-DATABASES = {}
-
-if ENVIRONMENT == 'production' or POSTGRES_LOCALLY:
-    DATABASES['default'] = dj_database_url.parse(os.getenv('DATABASE_URL'))
-
-
-# Print DATABASES configuration to debug
-print("DATABASES configuration:", DATABASES)
-
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
 
 
 # Password validation
